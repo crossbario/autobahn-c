@@ -31,20 +31,13 @@ So, how do we get WAMP onto say an ARM Cortex M3 with 64kB RAM, but no MMU?
 
 ## Requirements
 
-32 bit MCU (no MMU), at least 64kB RAM (eg ARM Cortex M devices)
-RIOT OS
-6LoWPAN/UDP WAMP transport
-CBOR serialization support
-
-DTLS
-
-WAMP-cryptosign
-WAMP-cryptobox
-
-
-1. AutobahnC must is implemented in ANSI/ISO C89.
-2.
-
+* 32 bit MCU (no MMU), at least 64kB RAM (eg ARM Cortex M devices)
+* RIOT OS
+* 6LoWPAN/UDP WAMP transport
+* CBOR serialization support
+* DTLS?
+* WAMP-cryptosign
+* WAMP-cryptobox (possibly)
 
 
 ## License and Copyrights
