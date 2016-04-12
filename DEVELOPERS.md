@@ -2,28 +2,45 @@
 
 ## Motivation
 
-So, why another Autobahn? Why yet another WAMP client library? Because IoT. Because we want to allow small, embedded devices to be first-class WAMP citizens, without requiring bridging from some other protocol.
+So, why another Autobahn? Why yet another WAMP client library?
+
+In one word: because IoT.
+
+Because we want to allow small, embedded devices to be first-class WAMP citizens.
+
+And without requiring bridging from some other protocol.
 
 For example, using AutobahnCpp and C++, it is possible to create an (essentially) completely statically linked, small executable.
 
 However, the fact that AutobahnCpp uses a couple of C++ features only available in C++ 11 and later (better C++ 14), and the fact that it deeply depends on Boost (in particular Boost ASIO) can make it hard when using C/C++ toolchains for embedded devices, which often are not as current as your modern GCC or Clang. Even Windows requires a very recent incarnation of VSS. Modern C++ is a weapon, but its also a biest.
 
-Then, while AutobahnCpp now implements multiple WAMP transports, namely WebSocket and RawSocket, but all these run over TCP (or in general, a reliable stream transport .. besides TCP, another one would be Unix domain sockets).
+Then Boost, and ASIO in particular is written against Posix/Win32 APIs. Of course, no issue when on a full blown *nix, *BSD or Windows system. But it is a problem on smallish embedded devices that can't run such OSs.
 
-However, TCP (and TLS) require non-trivial and complex implementations. Eg there are "Wifi/TCP on a chip" solutions, but I have yet to see one that provides an robust, interoperable implementation. Eg. the TI CC chips (eg used in Tessel 1), or ESP86xx both suck big time. The Wifi is flaky. The TCP is. Not to speak of TLS.
+Then, while AutobahnCpp now implements multiple WAMP transports, namely WebSocket and RawSocket, all these run over TCP (or in general, a reliable stream transport .. besides TCP, another one would be Unix domain sockets).
+
+However, TCP (and TLS) require non-trivial and complex implementations. Eg there are "Wifi/TCP on a chip" solutions, but I have yet to see one that provides a *robust, full and interoperable* implementation. For example, the TI CC chips (eg used in Tessel 1) or ESP86xx suck big time. The Wifi is flaky. The TCP is. Not to speak of TLS. Not recommended.
 
 Of course, when you can run a full Linux, all of above are non-issues. Linux has (obviously) capable and robust TCP, and GCC and Clang, and Open/LibreSSL. etc etc
 
-But you can't get Linux onto a say 64kB RAM 32 bit MMU-less MCU. No way. You can strip it down to maybe 1MB RAM. But not much below.
+But you can't get Linux onto a 64kB RAM 32 bit MMU-less MCU. No way. You can strip it down to maybe 1MB RAM. But not much below. And that already require screwing the GNU glibc and moving to a "non-standard" C run-time - and that means pain, pain, pain already anyway.
 
 > Sidenote: There is a modern development called "Rump kernels". The *BSDs are again innovating here. But this is more a research thing right now, and more directed towards server loads, not embedded. And I doubt it can run without a MMU and hardware assisted virtual memory.
 
-So, how do we get WAMP onto say an ARM Cortex M3 with 64kB RAM, no MMU?
-
-I
+So, how do we get WAMP onto say an ARM Cortex M3 with 64kB RAM, but no MMU?
 
 
 ## Requirements
+
+32 bit MCU (no MMU), at least 64kB RAM (eg ARM Cortex M devices)
+RIOT OS
+6LoWPAN/UDP WAMP transport
+CBOR serialization support
+
+DTLS
+
+WAMP-cryptosign
+WAMP-cryptobox
+
 
 1. AutobahnC must is implemented in ANSI/ISO C89.
 2.
@@ -61,7 +78,12 @@ The dev MCU/SoC/board we'll use in (early) development of AutobahnC is:
 
 * ARM Cortex M4
 * Freescale Kinetis KW2x
-* PHYTEC phyWAVE-KW2x
+* [PHYTEC phyWAVE-KW2x](http://www.phytec.de/produkte/internet-of-things/phywave/)
+
+
+http://www.compex.com.sg/wp-content/uploads/2015/12/WPQ864-v1.7a.pdf
+http://www.compex.com.sg/product/wpq864/
+
 
 The main reasons to use this specific product are:
 
