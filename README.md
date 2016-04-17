@@ -7,12 +7,16 @@
 
 ## Resources
 
-* https://github.com/RIOT-OS/RIOT/wiki/Introduction#native-riot---run-riot-on-your-pc
-* https://github.com/RIOT-OS/RIOT/wiki/Family:-native
-* https://github.com/RIOT-OS/RIOT/wiki/Virtual-riot-network
-* https://www.kernel.org/doc/Documentation/networking/tuntap.txt
-* http://riot-os.org/files/2015-riotlab-tutorial.pdf
-
+* [RIOT native intro](https://github.com/RIOT-OS/RIOT/wiki/Introduction#native-riot---run-riot-on-your-pc)
+* [RIOT native](https://github.com/RIOT-OS/RIOT/wiki/Family:-native)
+* [RIOT Virtual Networking](https://github.com/RIOT-OS/RIOT/wiki/Virtual-riot-network)
+* [Linux Kernel TUN/TAP docs](https://www.kernel.org/doc/Documentation/networking/tuntap.txt)
+* [RIOT-Lab Tutorial](http://riot-os.org/files/2015-riotlab-tutorial.pdf)
+* [Docker Buildbox](https://github.com/RIOT-OS/riotdocker/blob/master/Dockerfile)
+* [Microcoap example](https://github.com/RIOT-OS/applications/tree/master/microcoap)
+* [Serving CoAP on RIOT](http://watr.li/microcoap-and-ff-copper.html)
+* [Twisted/TAP/UDP Bridge](https://github.com/sgso/marz)
+* [txThings](https://github.com/mwasilak/txThings)
 
 ## Prerequisites
 
